@@ -23,7 +23,9 @@
 
 <body>
 
-    <!-- INTRO -->
+    <!-- ==========================================
+         INTRO
+    =========================================== -->
 
     <section
         id="intro"
@@ -37,26 +39,34 @@
                 <svg
                     class="search-icon"
                     viewBox="0 0 24 24"
+                    fill="none"
                 >
                     <circle
                         cx="11"
                         cy="11"
                         r="7"
                     />
+
                     <path
                         d="M20 20L17 17"
                     />
+
                 </svg>
 
-                <span id="typedText"></span>
+                <span
+                    id="typedText"
+                ></span>
 
             </div>
 
             <div class="intro-actions">
 
+                <!-- AUTO -->
+
                 <button
                     id="autoMode"
                     class="intro-mode"
+                    type="button"
                 >
 
                     <img
@@ -70,9 +80,12 @@
 
                 </button>
 
+                <!-- MANUAL -->
+
                 <button
                     id="manualMode"
                     class="intro-mode"
+                    type="button"
                 >
 
                     <img
@@ -99,7 +112,9 @@
 
     </section>
 
-    <!-- MUSIC -->
+    <!-- ==========================================
+         AUDIO
+    =========================================== -->
 
     <audio
         id="typingAudio"
@@ -114,7 +129,9 @@
         src="assets/2.m4a"
     ></audio>
 
-    <!-- PROGRESS -->
+    <!-- ==========================================
+         PROGRESS
+    =========================================== -->
 
     <div class="progress-container">
 
@@ -125,16 +142,22 @@
 
     </div>
 
-    <!-- NAV -->
+    <!-- ==========================================
+         NAVIGATION
+    =========================================== -->
 
     <aside
         id="sideNav"
         class="side-nav hidden"
     >
 
+        <!-- PLAY / PAUSE -->
+
         <button
             id="presentationMode"
             class="nav-control"
+            type="button"
+            aria-label="Play Pause"
         >
 
             <img
@@ -145,11 +168,14 @@
 
         </button>
 
+        <!-- CAPSULE -->
+
         <div class="nav-capsule">
 
             <button
                 id="goPrevious"
                 class="presentation-jump"
+                type="button"
             >
 
                 <img
@@ -164,11 +190,14 @@
                 class="page-window"
             >
 
+                <!-- JS -->
+
             </div>
 
             <button
                 id="goNext"
                 class="presentation-jump"
+                type="button"
             >
 
                 <img
@@ -180,9 +209,12 @@
 
         </div>
 
+        <!-- AUDIO -->
+
         <button
             id="audioToggle"
             class="nav-control"
+            type="button"
         >
 
             <img
@@ -193,9 +225,12 @@
 
         </button>
 
+        <!-- THEME -->
+
         <button
             id="themeToggle"
             class="nav-control"
+            type="button"
         >
 
             ☾
@@ -204,14 +239,112 @@
 
     </aside>
 
-    <!-- SLIDES -->
+    <!-- ==========================================
+         PRESENTATION
+    =========================================== -->
 
     <main
         id="slidesContainer"
         class="slides-container"
     >
 
+        <!-- CONTENT GENERATED
+             FROM data/content.json -->
+
     </main>
+
+    <!-- ==========================================
+         ACTIONS
+    =========================================== -->
+
+    <div
+        id="presentationActions"
+        class="presentation-actions hidden"
+    >
+
+        <!-- PDF -->
+
+        <button
+            id="pdfBtn"
+            class="action-btn"
+            type="button"
+            title="PDF"
+        >
+
+            PDF
+
+        </button>
+
+        <!-- SAVE -->
+
+        <button
+            id="saveBtn"
+            class="action-btn"
+            type="button"
+            title="Guardar"
+        >
+
+            Save
+
+        </button>
+
+        <!-- SHARE -->
+
+        <div class="share-wrap">
+
+            <button
+                id="shareBtn"
+                class="action-btn"
+                type="button"
+            >
+
+                <img
+                    src="iconos/share.svg"
+                    alt=""
+                >
+
+            </button>
+
+            <div
+                id="shareMenu"
+                class="share-menu"
+            >
+
+                <button
+                    id="mailBtn"
+                    class="action-btn"
+                    type="button"
+                >
+
+                    <img
+                        src="iconos/mail.svg"
+                        alt=""
+                    >
+
+                </button>
+
+                <button
+                    id="whatsappBtn"
+                    class="action-btn"
+                    type="button"
+                >
+
+                    <img
+                        src="iconos/whatsapp.svg"
+                        alt=""
+                    >
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================================
+         SCRIPT
+    =========================================== -->
 
     <script src="app.js"></script>
 
