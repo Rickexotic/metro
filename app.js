@@ -1,6 +1,6 @@
 /* ==================================================
    OUTSIDE COMMERCIAL FRAMEWORK
-   APP.JS
+   APP
    ================================================== */
 
 const CONFIG = {
@@ -9,6 +9,7 @@ const CONFIG = {
 
 let presentationData = null;
 let slides = [];
+
 let currentSlide = 0;
 
 let autoplayEnabled = false;
@@ -17,7 +18,7 @@ let autoplayTimer = null;
 let ambientEnabled = false;
 
 /* ==================================================
-   BOOT
+   START
    ================================================== */
 
 document.addEventListener(
@@ -65,132 +66,53 @@ async function loadContent() {
 
 function bindIntro() {
 
-    const autoBtn =
-        document.getElementById(
-            "autoMode"
-        );
-
-    const manualBtn =
-        document.getElementById(
-            "manualMode"
-        );
-
-    autoBtn.addEventListener(
-        "click",
-        () => {
-
-            autoplayEnabled = true;
-
-            startIntroSequence();
-
-        }
-    );
-
-    manualBtn.addEventListener(
-        "click",
-        () => {
-
-            autoplayEnabled = false;
-
-            startIntroSequence();
-
-        }
-    );
-
-}
-
-async function startIntroSequence() {
-
-    disableIntroButtons();
-
-    await playTypingSequence();
-
-    revealLogo();
-
-    await wait(1600);
-
-    hideIntro();
-
-    showNavigation();
-
-    activateSlide(0);
-
-    buildPagination();
-
-    if (autoplayEnabled) {
-
-        startAutoplay();
-
-    }
-
-}
-
-function disableIntroButtons() {
-
     document
-        .querySelectorAll(
-            ".intro-mode"
+        .getElementById(
+            "autoMode"
         )
-        .forEach(
-            btn =>
-                btn.disabled = true
+        .addEventListener(
+
+            "click",
+
+            async () => {
+
+                autoplayEnabled =
+                    true;
+
+                await startExperience();
+
+                startAutoplay();
+
+            }
+
         );
-
-}
-
-async function playTypingSequence() {
-
-    const typedText =
-        document.getElementById(
-            "typedText"
-        );
-
-    const typingAudio =
-        document.getElementById(
-            "typingAudio"
-        );
-
-    const text =
-        "Outside Co.";
-
-    typedText.textContent = "";
-
-    try {
-
-        typingAudio.currentTime = 0;
-
-        await typingAudio.play();
-
-    } catch (error) {}
-
-    for (
-        let i = 0;
-        i < text.length;
-        i++
-    ) {
-
-        typedText.textContent +=
-            text[i];
-
-        await wait(120);
-
-    }
-
-}
-
-function revealLogo() {
 
     document
         .getElementById(
-            "outsideLogo"
+            "manualMode"
         )
-        .classList.add(
-            "visible"
+        .addEventListener(
+
+            "click",
+
+            async () => {
+
+                autoplayEnabled =
+                    false;
+
+                await startExperience();
+
+            }
+
         );
 
 }
 
-function hideIntro() {
+async function startExperience() {
+
+    await playTyping();
+
+    await revealLogo();
 
     document
         .getElementById(
@@ -200,22 +122,69 @@ function hideIntro() {
             "hidden"
         );
 
+    activateSlide(0);
+
+    buildPagination();
+
 }
 
-function showNavigation() {
+async function playTyping() {
 
-    document
-        .getElementById(
-            "sideNav"
-        )
-        .classList.remove(
-            "hidden"
+    const text =
+        "Outside Co.";
+
+    const target =
+        document.getElementById(
+            "typedText"
         );
+
+    const audio =
+        document.getElementById(
+            "typingAudio"
+        );
+
+    target.textContent = "";
+
+    try {
+
+        audio.currentTime = 0;
+
+        await audio.play();
+
+    } catch (e) {}
+
+    for (
+        let i = 0;
+        i < text.length;
+        i++
+    ) {
+
+        target.textContent +=
+            text[i];
+
+        await wait(100);
+
+    }
+
+}
+
+async function revealLogo() {
+
+    const logo =
+        document.getElementById(
+            "outsideLogo"
+        );
+
+    logo.classList.add(
+        "visible"
+    );
+
+    await wait(1600);
 
 }
 
 /* ==================================================
-   RENDER
+   SLIDES
    ================================================== */
 
 function renderSlides() {
@@ -224,6 +193,8 @@ function renderSlides() {
         document.getElementById(
             "slidesContainer"
         );
+
+    slides = [];
 
     presentationData.slides.forEach(
 
@@ -263,7 +234,7 @@ function renderSlides() {
 
             `;
 
-            container.appendChild(
+            container.append(
                 section
             );
 
@@ -277,17 +248,15 @@ function renderSlides() {
 
 }
 
-/* ==================================================
-   SLIDES
-   ================================================== */
-
 function activateSlide(index) {
 
     slides.forEach(
+
         slide =>
             slide.classList.remove(
                 "active"
             )
+
     );
 
     currentSlide = index;
@@ -301,7 +270,7 @@ function activateSlide(index) {
 
     updateProgress();
 
-    toggleClosingActions();
+    updateClosing();
 
 }
 
@@ -354,24 +323,28 @@ function buildPagination() {
 
         (slide, index) => {
 
-            const page =
+            const link =
                 document.createElement(
                     "a"
                 );
 
-            page.href = "#";
+            link.href = "#";
 
-            page.textContent =
-                String(index + 1)
-                .padStart(2, "0");
+            link.textContent =
+                String(
+                    index + 1
+                ).padStart(
+                    2,
+                    "0"
+                );
 
-            page.addEventListener(
+            link.addEventListener(
 
                 "click",
 
-                event => {
+                e => {
 
-                    event.preventDefault();
+                    e.preventDefault();
 
                     stopAutoplay();
 
@@ -384,7 +357,7 @@ function buildPagination() {
             );
 
             pageWindow.append(
-                page
+                link
             );
 
         }
@@ -396,7 +369,9 @@ function buildPagination() {
             "goNext"
         )
         .addEventListener(
+
             "click",
+
             () => {
 
                 stopAutoplay();
@@ -404,6 +379,7 @@ function buildPagination() {
                 nextSlide();
 
             }
+
         );
 
     document
@@ -411,7 +387,9 @@ function buildPagination() {
             "goPrevious"
         )
         .addEventListener(
+
             "click",
+
             () => {
 
                 stopAutoplay();
@@ -419,6 +397,7 @@ function buildPagination() {
                 previousSlide();
 
             }
+
         );
 
     document
@@ -426,8 +405,11 @@ function buildPagination() {
             "presentationMode"
         )
         .addEventListener(
+
             "click",
+
             toggleAutoplay
+
         );
 
 }
@@ -495,7 +477,8 @@ function startAutoplay() {
 
     stopAutoplay();
 
-    autoplayEnabled = true;
+    autoplayEnabled =
+        true;
 
     updateModeIcon();
 
@@ -512,13 +495,14 @@ function startAutoplay() {
 
 function stopAutoplay() {
 
-    autoplayEnabled = false;
-
     clearInterval(
         autoplayTimer
     );
 
     autoplayTimer = null;
+
+    autoplayEnabled =
+        false;
 
     updateModeIcon();
 
@@ -567,8 +551,11 @@ function bindAudio() {
             "audioToggle"
         )
         .addEventListener(
+
             "click",
+
             toggleAudio
+
         );
 
 }
@@ -578,11 +565,6 @@ function toggleAudio() {
     const music =
         document.getElementById(
             "ambientAudio"
-        );
-
-    const icon =
-        document.getElementById(
-            "audioIcon"
         );
 
     ambientEnabled =
@@ -596,15 +578,9 @@ function toggleAudio() {
 
         music.play();
 
-        icon.src =
-            "iconos/volume-2.svg";
-
     } else {
 
         music.pause();
-
-        icon.src =
-            "iconos/volume-2.svg";
 
     }
 
@@ -626,9 +602,10 @@ function bindTheme() {
 
             () => {
 
-                document.body.classList.toggle(
-                    "dark"
-                );
+                document.body
+                    .classList.toggle(
+                        "dark"
+                    );
 
                 updateLogo();
 
@@ -664,12 +641,12 @@ function updateLogo() {
 }
 
 /* ==================================================
-   PROGRESS BAR
+   PROGRESS
    ================================================== */
 
 function updateProgress() {
 
-    const progress =
+    const percent =
 
         (
             (
@@ -684,7 +661,7 @@ function updateProgress() {
             "progressBar"
         )
         .style.height =
-            `${progress}%`;
+            `${percent}%`;
 
 }
 
@@ -699,8 +676,15 @@ function bindActions() {
             "pdfBtn"
         )
         .addEventListener(
+
             "click",
-            () => window.print()
+
+            () => {
+
+                window.print();
+
+            }
+
         );
 
     document
@@ -708,50 +692,31 @@ function bindActions() {
             "saveBtn"
         )
         .addEventListener(
+
             "click",
+
             savePresentation
+
         );
-
-}
-
-function toggleClosingActions() {
-
-    const actions =
-        document.getElementById(
-            "presentationActions"
-        );
-
-    if (
-        currentSlide ===
-        slides.length - 1
-    ) {
-
-        actions.classList.remove(
-            "hidden"
-        );
-
-    } else {
-
-        actions.classList.add(
-            "hidden"
-        );
-
-    }
 
 }
 
 function savePresentation() {
 
-    const html =
-        document.documentElement.outerHTML;
-
     const blob =
         new Blob(
-            [html],
+
+            [
+                document
+                    .documentElement
+                    .outerHTML
+            ],
+
             {
                 type:
                     "text/html"
             }
+
         );
 
     const link =
@@ -777,26 +742,28 @@ function savePresentation() {
 
 function bindShare() {
 
-    const shareButton =
-        document.getElementById(
-            "shareBtn"
-        );
-
     const menu =
         document.getElementById(
             "shareMenu"
         );
 
-    shareButton.addEventListener(
-        "click",
-        () => {
+    document
+        .getElementById(
+            "shareBtn"
+        )
+        .addEventListener(
 
-            menu.classList.toggle(
-                "open"
-            );
+            "click",
 
-        }
-    );
+            () => {
+
+                menu.classList.toggle(
+                    "open"
+                );
+
+            }
+
+        );
 
     document
         .getElementById(
@@ -808,9 +775,18 @@ function bindShare() {
 
             () => {
 
-                location.href =
+                const url =
+                    encodeURIComponent(
+                        location.href
+                    );
 
-                    `mailto:?subject=${document.title}&body=${location.href}`;
+                const title =
+                    encodeURIComponent(
+                        document.title
+                    );
+
+                location.href =
+                    `mailto:?subject=${title}&body=${url}`;
 
             }
 
@@ -826,9 +802,14 @@ function bindShare() {
 
             () => {
 
+                const text =
+                    encodeURIComponent(
+                        `${document.title} ${location.href}`
+                    );
+
                 window.open(
 
-                    `https://wa.me/?text=${encodeURIComponent(document.title + " " + location.href)}`,
+                    `https://wa.me/?text=${text}`,
 
                     "_blank"
 
@@ -841,6 +822,36 @@ function bindShare() {
 }
 
 /* ==================================================
+   CLOSING
+   ================================================== */
+
+function updateClosing() {
+
+    const actions =
+        document.getElementById(
+            "presentationActions"
+        );
+
+    if (
+        currentSlide ===
+        slides.length - 1
+    ) {
+
+        actions.classList.remove(
+            "hidden"
+        );
+
+    } else {
+
+        actions.classList.add(
+            "hidden"
+        );
+
+    }
+
+}
+
+/* ==================================================
    HELPERS
    ================================================== */
 
@@ -849,7 +860,6 @@ function wait(ms) {
     return new Promise(
 
         resolve =>
-
             setTimeout(
                 resolve,
                 ms
