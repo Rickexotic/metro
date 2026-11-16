@@ -1,9 +1,11 @@
 {
-  "client": "Metro de Santiago",
+  "client": {
+    "name": "Metro de Santiago"
+  },
 
   "presentation": {
     "title": "Club Metro",
-    "subtitle": "De operador de transporte a plataforma de relacionamiento urbano."
+    "subtitle": "De operador de transporte a plataforma de relacionamiento urbano"
   },
 
   "settings": {
@@ -16,90 +18,70 @@
     {
       "id": "01",
       "eyebrow": "OUTSIDE COMPANY",
-
       "title": "La infraestructura ya existe.",
-
       "text": "La relación aún no. Una oportunidad para transformar millones de viajes en millones de relaciones."
     },
 
     {
       "id": "02",
       "eyebrow": "CONTEXTO",
-
       "title": "Metro mueve millones de viajes cada día.",
-
-      "text": "Metro constituye una de las plataformas urbanas con mayor frecuencia de interacción del país. Millones de validaciones, cientos de estaciones y presencia transversal generan una oportunidad única de relacionamiento."
+      "text": "Metro representa una de las plataformas urbanas con mayor frecuencia de interacción en Chile. Cada viaje constituye una oportunidad de generar conocimiento, valor y relacionamiento."
     },
 
     {
       "id": "03",
       "eyebrow": "CAMBIO",
-
       "title": "La movilidad ya no compite solo por transporte.",
-
       "text": "Compite por relevancia. Compite por experiencia. Compite por pertenencia."
     },
 
     {
       "id": "04",
       "eyebrow": "PROBLEMA",
-
       "title": "Millones de viajes. Pocas relaciones.",
-
-      "text": "Metro posee frecuencia, cobertura y confianza. Sin embargo, gran parte de ese valor todavía no se transforma en un ecosistema de relacionamiento continuo."
+      "text": "Metro posee frecuencia, marca, cobertura y confianza. Sin embargo, gran parte de ese valor aún no se transforma en una relación continua con sus usuarios."
     },
 
     {
       "id": "05",
       "eyebrow": "BENCHMARK",
-
       "title": "Los líderes construyen ecosistemas.",
-
-      "text": "Heathrow Rewards. Extime Rewards. LATAM Pass. Starbucks Rewards. CMR Falabella. Los programas más exitosos no generan descuentos. Generan hábitos, datos y relaciones."
+      "text": "Programas como Heathrow Rewards, Extime Rewards, LATAM Pass, Starbucks Rewards y CMR demuestran que la fidelización más efectiva se basa en datos, hábitos y experiencias."
     },
 
     {
       "id": "06",
       "eyebrow": "INSIGHT",
-
       "title": "La frecuencia tiene valor.",
-
-      "text": "Metro ya posee la frecuencia. La oportunidad es diseñar un sistema capaz de capturar ese valor para usuarios, partners y la organización."
+      "text": "Metro ya posee la frecuencia. La oportunidad es capturar ese valor mediante una propuesta relevante para usuarios, partners y la organización."
     },
 
     {
       "id": "07",
       "eyebrow": "VISIÓN",
-
       "title": "De operador de transporte a plataforma de relacionamiento urbano.",
-
-      "text": "La evolución natural es pasar desde una lógica operacional hacia una relación permanente con las personas que utilizan la red diariamente."
+      "text": "La evolución natural consiste en conectar movilidad, beneficios, experiencias y servicios en una única experiencia para el usuario."
     },
 
     {
       "id": "08",
       "eyebrow": "ECOSISTEMA",
-
       "title": "Usuario Metro al centro.",
-
-      "text": "Comercio. Cultura. Gastronomía. Movilidad. Servicios. Beneficios. Experiencias. Partners. Todos conectados a través de una única plataforma."
+      "text": "Comercio. Cultura. Gastronomía. Movilidad. Servicios. Beneficios. Experiencias. Partners. Un ecosistema conectado a través de Club Metro."
     },
 
     {
       "id": "09",
       "eyebrow": "FRAMEWORK OUTSIDE",
-
       "title": "Discover. Design. Launch. Optimize.",
-
-      "text": "Un enfoque progresivo que permite validar hipótesis, diseñar la experiencia, ejecutar pilotos y escalar el ecosistema utilizando datos reales."
+      "text": "Un enfoque progresivo para comprender oportunidades, diseñar experiencias, validar hipótesis y escalar el modelo utilizando evidencia y datos."
     },
 
     {
       "id": "10",
       "eyebrow": "CLOSING",
-
       "title": "Los viajes ya existen.",
-
       "text": "La oportunidad es construir la relación. Let's build Club Metro."
     }
 
