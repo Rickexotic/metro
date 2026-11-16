@@ -1,50 +1,51 @@
 /* ==================================================
    OUTSIDE COMMERCIAL FRAMEWORK
-   APP
+   APP.JS
    ================================================== */
 
 const CONFIG = {
-
     AUTOPLAY_DELAY: 5000
-
 };
 
+let presentationData = null;
 let slides = [];
-
 let currentSlide = 0;
 
-let autoplay = false;
-
+let autoplayEnabled = false;
 let autoplayTimer = null;
 
 let ambientEnabled = false;
 
 /* ==================================================
-   START
+   BOOT
    ================================================== */
 
 document.addEventListener(
-
     "DOMContentLoaded",
-
-    async () => {
-
-        const content = await loadContent();
-
-        renderSlides(content);
-
-        initializeIntro();
-
-        initializeTheme();
-
-        initializeAudio();
-
-    }
-
+    initializeApp
 );
 
+async function initializeApp() {
+
+    presentationData =
+        await loadContent();
+
+    renderSlides();
+
+    bindIntro();
+
+    bindTheme();
+
+    bindAudio();
+
+    bindShare();
+
+    bindActions();
+
+}
+
 /* ==================================================
-   CONTENT
+   DATA
    ================================================== */
 
 async function loadContent() {
@@ -59,21 +60,174 @@ async function loadContent() {
 }
 
 /* ==================================================
+   INTRO
+   ================================================== */
+
+function bindIntro() {
+
+    const autoBtn =
+        document.getElementById(
+            "autoMode"
+        );
+
+    const manualBtn =
+        document.getElementById(
+            "manualMode"
+        );
+
+    autoBtn.addEventListener(
+        "click",
+        () => {
+
+            autoplayEnabled = true;
+
+            startIntroSequence();
+
+        }
+    );
+
+    manualBtn.addEventListener(
+        "click",
+        () => {
+
+            autoplayEnabled = false;
+
+            startIntroSequence();
+
+        }
+    );
+
+}
+
+async function startIntroSequence() {
+
+    disableIntroButtons();
+
+    await playTypingSequence();
+
+    revealLogo();
+
+    await wait(1600);
+
+    hideIntro();
+
+    showNavigation();
+
+    activateSlide(0);
+
+    buildPagination();
+
+    if (autoplayEnabled) {
+
+        startAutoplay();
+
+    }
+
+}
+
+function disableIntroButtons() {
+
+    document
+        .querySelectorAll(
+            ".intro-mode"
+        )
+        .forEach(
+            btn =>
+                btn.disabled = true
+        );
+
+}
+
+async function playTypingSequence() {
+
+    const typedText =
+        document.getElementById(
+            "typedText"
+        );
+
+    const typingAudio =
+        document.getElementById(
+            "typingAudio"
+        );
+
+    const text =
+        "Outside Co.";
+
+    typedText.textContent = "";
+
+    try {
+
+        typingAudio.currentTime = 0;
+
+        await typingAudio.play();
+
+    } catch (error) {}
+
+    for (
+        let i = 0;
+        i < text.length;
+        i++
+    ) {
+
+        typedText.textContent +=
+            text[i];
+
+        await wait(120);
+
+    }
+
+}
+
+function revealLogo() {
+
+    document
+        .getElementById(
+            "outsideLogo"
+        )
+        .classList.add(
+            "visible"
+        );
+
+}
+
+function hideIntro() {
+
+    document
+        .getElementById(
+            "intro"
+        )
+        .classList.add(
+            "hidden"
+        );
+
+}
+
+function showNavigation() {
+
+    document
+        .getElementById(
+            "sideNav"
+        )
+        .classList.remove(
+            "hidden"
+        );
+
+}
+
+/* ==================================================
    RENDER
    ================================================== */
 
-function renderSlides(content) {
+function renderSlides() {
 
     const container =
         document.getElementById(
             "slidesContainer"
         );
 
-    slides = [];
+    presentationData.slides.forEach(
 
-    content.slides.forEach(
-
-        (slide, index) => {
+        slide => {
 
             const section =
                 document.createElement(
@@ -82,9 +236,6 @@ function renderSlides(content) {
 
             section.className =
                 "slide";
-
-            section.id =
-                `slide-${index + 1}`;
 
             section.innerHTML = `
 
@@ -112,7 +263,7 @@ function renderSlides(content) {
 
             `;
 
-            container.append(
+            container.appendChild(
                 section
             );
 
@@ -123,131 +274,6 @@ function renderSlides(content) {
         }
 
     );
-
-}
-
-/* ==================================================
-   INTRO
-   ================================================== */
-
-function initializeIntro() {
-
-    const autoButton =
-        document.getElementById(
-            "autoMode"
-        );
-
-    const manualButton =
-        document.getElementById(
-            "manualMode"
-        );
-
-    autoButton.addEventListener(
-
-        "click",
-
-        () => {
-
-            autoplay = true;
-
-            startExperience();
-
-        }
-
-    );
-
-    manualButton.addEventListener(
-
-        "click",
-
-        () => {
-
-            autoplay = false;
-
-            startExperience();
-
-        }
-
-    );
-
-}
-
-async function startExperience() {
-
-    const text =
-        "Outside Co.";
-
-    const typed =
-        document.getElementById(
-            "typedText"
-        );
-
-    const typingAudio =
-        document.getElementById(
-            "typingAudio"
-        );
-
-    typed.textContent = "";
-
-    try {
-
-        typingAudio.currentTime =
-            0;
-
-        typingAudio.play();
-
-    } catch {}
-
-    for (
-        let i = 0;
-        i < text.length;
-        i++
-    ) {
-
-        typed.textContent +=
-            text[i];
-
-        await delay(120);
-
-    }
-
-    await delay(500);
-
-    document
-        .getElementById(
-            "outsideLogo"
-        )
-        .classList.add(
-            "visible"
-        );
-
-    await delay(1600);
-
-    document
-        .getElementById(
-            "intro"
-        )
-        .classList.add(
-            "hidden"
-        );
-
-    document
-        .getElementById(
-            "sideNav"
-        )
-        .classList.remove(
-            "hidden"
-        );
-
-    activateSlide(0);
-
-    buildPagination();
-
-    if (autoplay) {
-
-        startAutoplay();
-
-    }
 
 }
 
@@ -273,6 +299,10 @@ function activateSlide(index) {
 
     updatePagination();
 
+    updateProgress();
+
+    toggleClosingActions();
+
 }
 
 function nextSlide() {
@@ -297,10 +327,12 @@ function nextSlide() {
 function previousSlide() {
 
     activateSlide(
+
         Math.max(
             0,
             currentSlide - 1
         )
+
     );
 
 }
@@ -311,32 +343,29 @@ function previousSlide() {
 
 function buildPagination() {
 
-    const windowEl =
+    const pageWindow =
         document.getElementById(
             "pageWindow"
         );
 
-    windowEl.innerHTML = "";
+    pageWindow.innerHTML = "";
 
     slides.forEach(
 
         (slide, index) => {
 
-            const link =
+            const page =
                 document.createElement(
                     "a"
                 );
 
-            link.href = "#";
+            page.href = "#";
 
-            link.textContent =
+            page.textContent =
                 String(index + 1)
-                    .padStart(
-                        2,
-                        "0"
-                    );
+                .padStart(2, "0");
 
-            link.addEventListener(
+            page.addEventListener(
 
                 "click",
 
@@ -354,28 +383,13 @@ function buildPagination() {
 
             );
 
-            windowEl.append(
-                link
+            pageWindow.append(
+                page
             );
 
         }
 
     );
-
-    document
-        .getElementById(
-            "goPrevious"
-        )
-        .addEventListener(
-            "click",
-            () => {
-
-                stopAutoplay();
-
-                previousSlide();
-
-            }
-        );
 
     document
         .getElementById(
@@ -394,6 +408,21 @@ function buildPagination() {
 
     document
         .getElementById(
+            "goPrevious"
+        )
+        .addEventListener(
+            "click",
+            () => {
+
+                stopAutoplay();
+
+                previousSlide();
+
+            }
+        );
+
+    document
+        .getElementById(
             "presentationMode"
         )
         .addEventListener(
@@ -401,15 +430,15 @@ function buildPagination() {
             toggleAutoplay
         );
 
-    updatePagination();
-
 }
 
 function updatePagination() {
 
     const links =
-        document.querySelectorAll(
-            "#pageWindow a"
+        Array.from(
+            document.querySelectorAll(
+                "#pageWindow a"
+            )
         );
 
     links.forEach(
@@ -417,6 +446,32 @@ function updatePagination() {
             link.classList.remove(
                 "active"
             )
+    );
+
+    const start =
+        Math.max(
+            0,
+            Math.min(
+                currentSlide - 2,
+                slides.length - 5
+            )
+        );
+
+    links.forEach(
+
+        (link, index) => {
+
+            const visible =
+                index >= start &&
+                index < start + 5;
+
+            link.style.display =
+                visible
+                    ? "block"
+                    : "none";
+
+        }
+
     );
 
     if (
@@ -430,8 +485,6 @@ function updatePagination() {
 
     }
 
-    updateProgress();
-
 }
 
 /* ==================================================
@@ -440,7 +493,9 @@ function updatePagination() {
 
 function startAutoplay() {
 
-    autoplay = true;
+    stopAutoplay();
+
+    autoplayEnabled = true;
 
     updateModeIcon();
 
@@ -457,7 +512,7 @@ function startAutoplay() {
 
 function stopAutoplay() {
 
-    autoplay = false;
+    autoplayEnabled = false;
 
     clearInterval(
         autoplayTimer
@@ -471,7 +526,9 @@ function stopAutoplay() {
 
 function toggleAutoplay() {
 
-    if (autoplay) {
+    if (
+        autoplayEnabled
+    ) {
 
         stopAutoplay();
 
@@ -491,7 +548,7 @@ function updateModeIcon() {
         );
 
     icon.src =
-        autoplay
+        autoplayEnabled
 
             ? "iconos/pause-circle.svg"
 
@@ -503,18 +560,15 @@ function updateModeIcon() {
    AUDIO
    ================================================== */
 
-function initializeAudio() {
+function bindAudio() {
 
     document
         .getElementById(
             "audioToggle"
         )
         .addEventListener(
-
             "click",
-
             toggleAudio
-
         );
 
 }
@@ -526,18 +580,31 @@ function toggleAudio() {
             "ambientAudio"
         );
 
+    const icon =
+        document.getElementById(
+            "audioIcon"
+        );
+
     ambientEnabled =
         !ambientEnabled;
 
-    if (ambientEnabled) {
+    if (
+        ambientEnabled
+    ) {
 
         music.volume = 0.2;
 
         music.play();
 
+        icon.src =
+            "iconos/volume-2.svg";
+
     } else {
 
         music.pause();
+
+        icon.src =
+            "iconos/volume-2.svg";
 
     }
 
@@ -547,7 +614,7 @@ function toggleAudio() {
    THEME
    ================================================== */
 
-function initializeTheme() {
+function bindTheme() {
 
     document
         .getElementById(
@@ -559,10 +626,213 @@ function initializeTheme() {
 
             () => {
 
-                document.body
-                    .classList.toggle(
-                        "dark"
-                    );
+                document.body.classList.toggle(
+                    "dark"
+                );
+
+                updateLogo();
+
+            }
+
+        );
+
+}
+
+function updateLogo() {
+
+    const logo =
+        document.getElementById(
+            "outsideLogo"
+        );
+
+    if (
+        document.body.classList.contains(
+            "dark"
+        )
+    ) {
+
+        logo.src =
+            "assets/outside-logo-white.png";
+
+    } else {
+
+        logo.src =
+            "assets/outside-logo-black.png";
+
+    }
+
+}
+
+/* ==================================================
+   PROGRESS BAR
+   ================================================== */
+
+function updateProgress() {
+
+    const progress =
+
+        (
+            (
+                currentSlide + 1
+            )
+            /
+            slides.length
+        ) * 100;
+
+    document
+        .getElementById(
+            "progressBar"
+        )
+        .style.height =
+            `${progress}%`;
+
+}
+
+/* ==================================================
+   ACTIONS
+   ================================================== */
+
+function bindActions() {
+
+    document
+        .getElementById(
+            "pdfBtn"
+        )
+        .addEventListener(
+            "click",
+            () => window.print()
+        );
+
+    document
+        .getElementById(
+            "saveBtn"
+        )
+        .addEventListener(
+            "click",
+            savePresentation
+        );
+
+}
+
+function toggleClosingActions() {
+
+    const actions =
+        document.getElementById(
+            "presentationActions"
+        );
+
+    if (
+        currentSlide ===
+        slides.length - 1
+    ) {
+
+        actions.classList.remove(
+            "hidden"
+        );
+
+    } else {
+
+        actions.classList.add(
+            "hidden"
+        );
+
+    }
+
+}
+
+function savePresentation() {
+
+    const html =
+        document.documentElement.outerHTML;
+
+    const blob =
+        new Blob(
+            [html],
+            {
+                type:
+                    "text/html"
+            }
+        );
+
+    const link =
+        document.createElement(
+            "a"
+        );
+
+    link.href =
+        URL.createObjectURL(
+            blob
+        );
+
+    link.download =
+        "outside-metro.html";
+
+    link.click();
+
+}
+
+/* ==================================================
+   SHARE
+   ================================================== */
+
+function bindShare() {
+
+    const shareButton =
+        document.getElementById(
+            "shareBtn"
+        );
+
+    const menu =
+        document.getElementById(
+            "shareMenu"
+        );
+
+    shareButton.addEventListener(
+        "click",
+        () => {
+
+            menu.classList.toggle(
+                "open"
+            );
+
+        }
+    );
+
+    document
+        .getElementById(
+            "mailBtn"
+        )
+        .addEventListener(
+
+            "click",
+
+            () => {
+
+                location.href =
+
+                    `mailto:?subject=${document.title}&body=${location.href}`;
+
+            }
+
+        );
+
+    document
+        .getElementById(
+            "whatsappBtn"
+        )
+        .addEventListener(
+
+            "click",
+
+            () => {
+
+                window.open(
+
+                    `https://wa.me/?text=${encodeURIComponent(document.title + " " + location.href)}`,
+
+                    "_blank"
+
+                );
 
             }
 
@@ -571,41 +841,10 @@ function initializeTheme() {
 }
 
 /* ==================================================
-   PROGRESS
-   ================================================== */
-
-function updateProgress() {
-
-    const value =
-
-        (
-            (
-
-                currentSlide + 1
-
-            )
-
-            /
-
-            slides.length
-
-        ) * 100;
-
-    document
-        .getElementById(
-            "progressBar"
-        )
-        .style.height =
-
-        `${value}%`;
-
-}
-
-/* ==================================================
    HELPERS
    ================================================== */
 
-function delay(ms) {
+function wait(ms) {
 
     return new Promise(
 
