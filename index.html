@@ -23,9 +23,18 @@
 
 <body>
 
-    <!-- ==========================================
-         INTRO EXPERIENCE
-    =========================================== -->
+    <!-- PROGRESS -->
+
+    <div class="progress-container">
+
+        <div
+            id="progressBar"
+            class="progress-bar"
+        ></div>
+
+    </div>
+
+    <!-- INTRO -->
 
     <section
         id="intro"
@@ -34,61 +43,11 @@
 
         <div class="intro-content">
 
-            <!-- SEARCH -->
-
-            <div class="search-wrapper">
-
-                <div
-                    id="searchBar"
-                    class="search-bar"
-                >
-
-                    <svg
-                        class="search-icon"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                    >
-                        <circle
-                            cx="11"
-                            cy="11"
-                            r="7"
-                        ></circle>
-
-                        <path
-                            d="M20 20L17 17"
-                        ></path>
-
-                    </svg>
-
-                    <span
-                        id="typedText"
-                    ></span>
-
-                </div>
-
-            </div>
-
-            <!-- LOGO -->
+            <!-- STEP 1 -->
 
             <div
-                id="logoStage"
-                class="logo-stage"
-            >
-
-                <img
-                    id="outsideLogo"
-                    class="outside-logo"
-                    src="assets/outside-logo-black.png"
-                    alt="Outside"
-                >
-
-            </div>
-
-            <!-- MODE SELECTION -->
-
-            <div
-                id="introActions"
-                class="intro-actions"
+                id="introSelector"
+                class="intro-selector"
             >
 
                 <button
@@ -103,9 +62,7 @@
                     >
 
                     <span>
-
                         Auto
-
                     </span>
 
                 </button>
@@ -122,12 +79,61 @@
                     >
 
                     <span>
-
                         Manual
-
                     </span>
 
                 </button>
+
+            </div>
+
+            <!-- STEP 2 -->
+
+            <div
+                id="searchStage"
+                class="search-stage"
+            >
+
+                <div class="search-bar">
+
+                    <svg
+                        class="search-icon"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                    >
+
+                        <circle
+                            cx="11"
+                            cy="11"
+                            r="7"
+                        />
+
+                        <path
+                            d="M20 20L17 17"
+                        />
+
+                    </svg>
+
+                    <span
+                        id="typedText"
+                    ></span>
+
+                </div>
+
+            </div>
+
+            <!-- STEP 3 -->
+
+            <div
+                id="logoStage"
+                class="logo-stage"
+            >
+
+                <img
+                    id="outsideLogo"
+                    class="outside-logo"
+                    src="assets/outside-logo-black.png"
+                    alt="Outside"
+                >
 
             </div>
 
@@ -135,55 +141,32 @@
 
     </section>
 
-    <!-- ==========================================
-         AUDIO
-    =========================================== -->
+    <!-- AUDIO -->
 
     <audio
         id="typingAudio"
         preload="auto"
         src="assets/typing.m4a"
-    >
-    </audio>
+    ></audio>
 
     <audio
         id="ambientAudio"
         preload="auto"
         loop
         src="assets/2.m4a"
-    >
-    </audio>
+    ></audio>
 
-    <!-- ==========================================
-         PROGRESS
-    =========================================== -->
-
-    <div class="progress-container">
-
-        <div
-            id="progressBar"
-            class="progress-bar"
-        >
-        </div>
-
-    </div>
-
-    <!-- ==========================================
-         NAVIGATION
-    =========================================== -->
+    <!-- NAVIGATION -->
 
     <aside
         id="sideNav"
-        class="side-nav"
+        class="side-nav hidden"
     >
-
-        <!-- PLAY / PAUSE -->
 
         <button
             id="presentationMode"
             class="nav-pill"
             type="button"
-            aria-label="Play Pause"
         >
 
             <img
@@ -194,8 +177,6 @@
 
         </button>
 
-        <!-- CAPSULE -->
-
         <div
             class="nav-capsule"
         >
@@ -204,7 +185,6 @@
                 id="goPrevious"
                 class="nav-arrow"
                 type="button"
-                aria-label="Anterior"
             >
 
                 <img
@@ -217,17 +197,12 @@
             <div
                 id="pageWindow"
                 class="page-window"
-            >
-
-                <!-- JS -->
-
-            </div>
+            ></div>
 
             <button
                 id="goNext"
                 class="nav-arrow"
                 type="button"
-                aria-label="Siguiente"
             >
 
                 <img
@@ -239,13 +214,10 @@
 
         </div>
 
-        <!-- AUDIO -->
-
         <button
             id="audioToggle"
             class="nav-pill"
             type="button"
-            aria-label="Audio"
         >
 
             <img
@@ -256,45 +228,38 @@
 
         </button>
 
-        <!-- THEME -->
-
         <button
             id="themeToggle"
             class="nav-pill"
             type="button"
-            aria-label="Theme"
         >
 
-            ☾
+            <img
+                src="iconos/theme.svg"
+                alt=""
+            >
 
         </button>
 
     </aside>
 
-    <!-- ==========================================
-         SLIDES
-    =========================================== -->
+    <!-- SLIDES -->
 
     <main
         id="slidesContainer"
         class="slides-container"
     >
 
-        <!--
-        Slides renderizadas
-        desde data/content.json
-        -->
-
     </main>
 
-    <!-- ==========================================
-         CLOSING ACTIONS
-    =========================================== -->
+    <!-- ACTIONS -->
 
     <div
         id="presentationActions"
-        class="presentation-actions"
+        class="presentation-actions hidden"
     >
+
+        <!-- PDF -->
 
         <button
             id="pdfBtn"
@@ -302,9 +267,14 @@
             type="button"
         >
 
-            PDF
+            <img
+                src="iconos/pdf.svg"
+                alt=""
+            >
 
         </button>
+
+        <!-- SAVE -->
 
         <button
             id="saveBtn"
@@ -312,9 +282,14 @@
             type="button"
         >
 
-            Save
+            <img
+                src="iconos/download.svg"
+                alt=""
+            >
 
         </button>
+
+        <!-- SHARE -->
 
         <div class="share-wrap">
 
