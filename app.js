@@ -181,13 +181,29 @@ async function startIntro() {
 
     buildPagination();
 
-    if (
-        autoplayEnabled
-    ) {
+   if (
+    autoplayEnabled
+) {
 
-        startAutoplay();
+    startAutoplay();
+
+}
+else {
+
+    const music =
+        document.getElementById(
+            "ambientAudio"
+        );
+
+    if (music) {
+
+        music.pause();
+
+        music.currentTime = 0;
 
     }
+
+}
 
 }
 
@@ -510,10 +526,26 @@ function updatePagination() {
 
 function startAutoplay() {
 
-    stopAutoplay();
+    clearInterval(
+        autoplayTimer
+    );
 
     autoplayEnabled =
         true;
+
+    const music =
+        document.getElementById(
+            "ambientAudio"
+        );
+
+    if (music) {
+
+        music.volume = 0.2;
+
+        music.play()
+            .catch(() => {});
+
+    }
 
     updateModeIcon();
 
@@ -534,8 +566,25 @@ function stopAutoplay() {
         autoplayTimer
     );
 
+    autoplayTimer = null;
+
     autoplayEnabled =
         false;
+
+    /* detener música */
+
+    const music =
+        document.getElementById(
+            "ambientAudio"
+        );
+
+    if (music) {
+
+        music.pause();
+
+        music.currentTime = 0;
+
+    }
 
     updateModeIcon();
 
