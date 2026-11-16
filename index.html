@@ -24,7 +24,7 @@
 <body>
 
     <!-- ==========================================
-         INTRO
+         INTRO EXPERIENCE
     =========================================== -->
 
     <section
@@ -32,40 +32,68 @@
         class="intro-screen"
     >
 
-        <div class="intro-center">
+        <div class="intro-content">
 
-            <div class="intro-search">
+            <!-- SEARCH -->
 
-                <svg
-                    class="search-icon"
-                    viewBox="0 0 24 24"
-                    fill="none"
+            <div class="search-wrapper">
+
+                <div
+                    id="searchBar"
+                    class="search-bar"
                 >
-                    <circle
-                        cx="11"
-                        cy="11"
-                        r="7"
-                    />
 
-                    <path
-                        d="M20 20L17 17"
-                    />
+                    <svg
+                        class="search-icon"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                    >
+                        <circle
+                            cx="11"
+                            cy="11"
+                            r="7"
+                        ></circle>
 
-                </svg>
+                        <path
+                            d="M20 20L17 17"
+                        ></path>
 
-                <span
-                    id="typedText"
-                ></span>
+                    </svg>
+
+                    <span
+                        id="typedText"
+                    ></span>
+
+                </div>
 
             </div>
 
-            <div class="intro-actions">
+            <!-- LOGO -->
 
-                <!-- AUTO -->
+            <div
+                id="logoStage"
+                class="logo-stage"
+            >
+
+                <img
+                    id="outsideLogo"
+                    class="outside-logo"
+                    src="assets/outside-logo-black.png"
+                    alt="Outside"
+                >
+
+            </div>
+
+            <!-- MODE SELECTION -->
+
+            <div
+                id="introActions"
+                class="intro-actions"
+            >
 
                 <button
                     id="autoMode"
-                    class="intro-mode"
+                    class="intro-button"
                     type="button"
                 >
 
@@ -75,16 +103,16 @@
                     >
 
                     <span>
+
                         Auto
+
                     </span>
 
                 </button>
 
-                <!-- MANUAL -->
-
                 <button
                     id="manualMode"
-                    class="intro-mode"
+                    class="intro-button"
                     type="button"
                 >
 
@@ -94,19 +122,14 @@
                     >
 
                     <span>
+
                         Manual
+
                     </span>
 
                 </button>
 
             </div>
-
-            <img
-                id="outsideLogo"
-                class="outside-logo"
-                src="assets/outside-logo-black.png"
-                alt="Outside"
-            >
 
         </div>
 
@@ -120,14 +143,16 @@
         id="typingAudio"
         preload="auto"
         src="assets/typing.m4a"
-    ></audio>
+    >
+    </audio>
 
     <audio
         id="ambientAudio"
         preload="auto"
         loop
         src="assets/2.m4a"
-    ></audio>
+    >
+    </audio>
 
     <!-- ==========================================
          PROGRESS
@@ -138,7 +163,8 @@
         <div
             id="progressBar"
             class="progress-bar"
-        ></div>
+        >
+        </div>
 
     </div>
 
@@ -148,14 +174,14 @@
 
     <aside
         id="sideNav"
-        class="side-nav hidden"
+        class="side-nav"
     >
 
         <!-- PLAY / PAUSE -->
 
         <button
             id="presentationMode"
-            class="nav-control"
+            class="nav-pill"
             type="button"
             aria-label="Play Pause"
         >
@@ -170,12 +196,15 @@
 
         <!-- CAPSULE -->
 
-        <div class="nav-capsule">
+        <div
+            class="nav-capsule"
+        >
 
             <button
                 id="goPrevious"
-                class="presentation-jump"
+                class="nav-arrow"
                 type="button"
+                aria-label="Anterior"
             >
 
                 <img
@@ -196,8 +225,9 @@
 
             <button
                 id="goNext"
-                class="presentation-jump"
+                class="nav-arrow"
                 type="button"
+                aria-label="Siguiente"
             >
 
                 <img
@@ -213,8 +243,9 @@
 
         <button
             id="audioToggle"
-            class="nav-control"
+            class="nav-pill"
             type="button"
+            aria-label="Audio"
         >
 
             <img
@@ -229,8 +260,9 @@
 
         <button
             id="themeToggle"
-            class="nav-control"
+            class="nav-pill"
             type="button"
+            aria-label="Theme"
         >
 
             ☾
@@ -240,7 +272,7 @@
     </aside>
 
     <!-- ==========================================
-         PRESENTATION
+         SLIDES
     =========================================== -->
 
     <main
@@ -248,47 +280,41 @@
         class="slides-container"
     >
 
-        <!-- CONTENT GENERATED
-             FROM data/content.json -->
+        <!--
+        Slides renderizadas
+        desde data/content.json
+        -->
 
     </main>
 
     <!-- ==========================================
-         ACTIONS
+         CLOSING ACTIONS
     =========================================== -->
 
     <div
         id="presentationActions"
-        class="presentation-actions hidden"
+        class="presentation-actions"
     >
-
-        <!-- PDF -->
 
         <button
             id="pdfBtn"
             class="action-btn"
             type="button"
-            title="PDF"
         >
 
             PDF
 
         </button>
 
-        <!-- SAVE -->
-
         <button
             id="saveBtn"
             class="action-btn"
             type="button"
-            title="Guardar"
         >
 
             Save
 
         </button>
-
-        <!-- SHARE -->
 
         <div class="share-wrap">
 
@@ -341,10 +367,6 @@
         </div>
 
     </div>
-
-    <!-- ==========================================
-         SCRIPT
-    =========================================== -->
 
     <script src="app.js"></script>
 
