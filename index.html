@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Club Metro | Outside Commercial Proposal
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="styles.css"
+    >
+
+</head>
+
+<body>
+
+    <!-- INTRO -->
+
+    <section
+        id="intro"
+        class="intro-screen"
+    >
+
+        <div class="intro-center">
+
+            <div class="intro-search">
+
+                <svg
+                    class="search-icon"
+                    viewBox="0 0 24 24"
+                >
+                    <circle
+                        cx="11"
+                        cy="11"
+                        r="7"
+                    />
+                    <path
+                        d="M20 20L17 17"
+                    />
+                </svg>
+
+                <span id="typedText"></span>
+
+            </div>
+
+            <div class="intro-actions">
+
+                <button
+                    id="autoMode"
+                    class="intro-mode"
+                >
+
+                    <img
+                        src="iconos/play-circle.svg"
+                        alt=""
+                    >
+
+                    <span>
+                        Auto
+                    </span>
+
+                </button>
+
+                <button
+                    id="manualMode"
+                    class="intro-mode"
+                >
+
+                    <img
+                        src="iconos/hand-index.svg"
+                        alt=""
+                    >
+
+                    <span>
+                        Manual
+                    </span>
+
+                </button>
+
+            </div>
+
+            <img
+                id="outsideLogo"
+                class="outside-logo"
+                src="assets/outside-logo-black.png"
+                alt="Outside"
+            >
+
+        </div>
+
+    </section>
+
+    <!-- MUSIC -->
+
+    <audio
+        id="typingAudio"
+        preload="auto"
+        src="assets/typing.m4a"
+    ></audio>
+
+    <audio
+        id="ambientAudio"
+        preload="auto"
+        loop
+        src="assets/2.m4a"
+    ></audio>
+
+    <!-- PROGRESS -->
+
+    <div class="progress-container">
+
+        <div
+            id="progressBar"
+            class="progress-bar"
+        ></div>
+
+    </div>
+
+    <!-- NAV -->
+
+    <aside
+        id="sideNav"
+        class="side-nav hidden"
+    >
+
+        <button
+            id="presentationMode"
+            class="nav-control"
+        >
+
+            <img
+                id="presentationModeIcon"
+                src="iconos/pause-circle.svg"
+                alt=""
+            >
+
+        </button>
+
+        <div class="nav-capsule">
+
+            <button
+                id="goPrevious"
+                class="presentation-jump"
+            >
+
+                <img
+                    src="iconos/chevron-up.svg"
+                    alt=""
+                >
+
+            </button>
+
+            <div
+                id="pageWindow"
+                class="page-window"
+            >
+
+            </div>
+
+            <button
+                id="goNext"
+                class="presentation-jump"
+            >
+
+                <img
+                    src="iconos/chevron-down.svg"
+                    alt=""
+                >
+
+            </button>
+
+        </div>
+
+        <button
+            id="audioToggle"
+            class="nav-control"
+        >
+
+            <img
+                id="audioIcon"
+                src="iconos/volume-2.svg"
+                alt=""
+            >
+
+        </button>
+
+        <button
+            id="themeToggle"
+            class="nav-control"
+        >
+
+            ☾
+
+        </button>
+
+    </aside>
+
+    <!-- SLIDES -->
+
+    <main
+        id="slidesContainer"
+        class="slides-container"
+    >
+
+    </main>
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>
