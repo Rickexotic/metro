@@ -18,7 +18,7 @@ let autoplayTimer = null;
 let ambientEnabled = false;
 
 /* ==================================================
-   START
+   BOOT
    ================================================== */
 
 document.addEventListener(
@@ -66,53 +66,100 @@ async function loadContent() {
 
 function bindIntro() {
 
-    document
-        .getElementById(
+    const autoBtn =
+        document.getElementById(
             "autoMode"
-        )
-        .addEventListener(
-
-            "click",
-
-            async () => {
-
-                autoplayEnabled =
-                    true;
-
-                await startExperience();
-
-                startAutoplay();
-
-            }
-
         );
 
-    document
-        .getElementById(
+    const manualBtn =
+        document.getElementById(
             "manualMode"
-        )
-        .addEventListener(
-
-            "click",
-
-            async () => {
-
-                autoplayEnabled =
-                    false;
-
-                await startExperience();
-
-            }
-
         );
+
+    autoBtn.addEventListener(
+
+        "click",
+
+        async () => {
+
+            autoplayEnabled =
+                true;
+
+            await startIntro();
+
+        }
+
+    );
+
+    manualBtn.addEventListener(
+
+        "click",
+
+        async () => {
+
+            autoplayEnabled =
+                false;
+
+            await startIntro();
+
+        }
+
+    );
 
 }
 
-async function startExperience() {
+async function startIntro() {
+
+    document
+        .getElementById(
+            "introSelector"
+        )
+        .classList.add(
+            "hidden"
+        );
+
+    const search =
+        document.getElementById(
+            "searchStage"
+        );
+
+    search.classList.add(
+        "active"
+    );
 
     await playTyping();
 
-    await revealLogo();
+    await wait(500);
+
+    search.classList.remove(
+        "active"
+    );
+
+    const logoStage =
+        document.getElementById(
+            "logoStage"
+        );
+
+    logoStage.classList.add(
+        "active"
+    );
+
+    const logo =
+        document.getElementById(
+            "outsideLogo"
+        );
+
+    logo.classList.add(
+        "visible"
+    );
+
+    await wait(2000);
+
+    logo.classList.remove(
+        "visible"
+    );
+
+    await wait(600);
 
     document
         .getElementById(
@@ -122,9 +169,25 @@ async function startExperience() {
             "hidden"
         );
 
+    document
+        .getElementById(
+            "sideNav"
+        )
+        .classList.remove(
+            "hidden"
+        );
+
     activateSlide(0);
 
     buildPagination();
+
+    if (
+        autoplayEnabled
+    ) {
+
+        startAutoplay();
+
+    }
 
 }
 
@@ -162,29 +225,14 @@ async function playTyping() {
         target.textContent +=
             text[i];
 
-        await wait(100);
+        await wait(120);
 
     }
 
 }
 
-async function revealLogo() {
-
-    const logo =
-        document.getElementById(
-            "outsideLogo"
-        );
-
-    logo.classList.add(
-        "visible"
-    );
-
-    await wait(1600);
-
-}
-
 /* ==================================================
-   SLIDES
+   RENDER
    ================================================== */
 
 function renderSlides() {
@@ -248,15 +296,17 @@ function renderSlides() {
 
 }
 
+/* ==================================================
+   SLIDES
+   ================================================== */
+
 function activateSlide(index) {
 
     slides.forEach(
-
         slide =>
             slide.classList.remove(
                 "active"
             )
-
     );
 
     currentSlide = index;
@@ -267,9 +317,7 @@ function activateSlide(index) {
         );
 
     updatePagination();
-
     updateProgress();
-
     updateClosing();
 
 }
@@ -282,7 +330,6 @@ function nextSlide() {
     ) {
 
         stopAutoplay();
-
         return;
 
     }
@@ -321,7 +368,7 @@ function buildPagination() {
 
     slides.forEach(
 
-        (slide, index) => {
+        (_, index) => {
 
             const link =
                 document.createElement(
@@ -423,14 +470,7 @@ function updatePagination() {
             )
         );
 
-    links.forEach(
-        link =>
-            link.classList.remove(
-                "active"
-            )
-    );
-
-    const start =
+    const windowStart =
         Math.max(
             0,
             Math.min(
@@ -443,12 +483,13 @@ function updatePagination() {
 
         (link, index) => {
 
-            const visible =
-                index >= start &&
-                index < start + 5;
+            link.classList.remove(
+                "active"
+            );
 
             link.style.display =
-                visible
+                index >= windowStart &&
+                index < windowStart + 5
                     ? "block"
                     : "none";
 
@@ -456,16 +497,10 @@ function updatePagination() {
 
     );
 
-    if (
-        links[currentSlide]
-    ) {
-
-        links[currentSlide]
-            .classList.add(
-                "active"
-            );
-
-    }
+    links[currentSlide]
+        ?.classList.add(
+            "active"
+        );
 
 }
 
@@ -499,8 +534,6 @@ function stopAutoplay() {
         autoplayTimer
     );
 
-    autoplayTimer = null;
-
     autoplayEnabled =
         false;
 
@@ -526,12 +559,12 @@ function toggleAutoplay() {
 
 function updateModeIcon() {
 
-    const icon =
-        document.getElementById(
+    document
+        .getElementById(
             "presentationModeIcon"
-        );
+        )
+        .src =
 
-    icon.src =
         autoplayEnabled
 
             ? "iconos/pause-circle.svg"
@@ -622,21 +655,15 @@ function updateLogo() {
             "outsideLogo"
         );
 
-    if (
+    logo.src =
+
         document.body.classList.contains(
             "dark"
         )
-    ) {
 
-        logo.src =
-            "assets/outside-logo-white.png";
+        ? "assets/outside-logo-white.png"
 
-    } else {
-
-        logo.src =
-            "assets/outside-logo-black.png";
-
-    }
+        : "assets/outside-logo-black.png";
 
 }
 
@@ -666,7 +693,7 @@ function updateProgress() {
 }
 
 /* ==================================================
-   ACTIONS
+   PDF / SAVE
    ================================================== */
 
 function bindActions() {
@@ -679,11 +706,7 @@ function bindActions() {
 
             "click",
 
-            () => {
-
-                window.print();
-
-            }
+            () => window.print()
 
         );
 
@@ -707,14 +730,11 @@ function savePresentation() {
         new Blob(
 
             [
-                document
-                    .documentElement
-                    .outerHTML
+                document.documentElement.outerHTML
             ],
 
             {
-                type:
-                    "text/html"
+                type:"text/html"
             }
 
         );
@@ -775,18 +795,8 @@ function bindShare() {
 
             () => {
 
-                const url =
-                    encodeURIComponent(
-                        location.href
-                    );
-
-                const title =
-                    encodeURIComponent(
-                        document.title
-                    );
-
                 location.href =
-                    `mailto:?subject=${title}&body=${url}`;
+                    `mailto:?subject=${document.title}&body=${location.href}`;
 
             }
 
@@ -802,14 +812,9 @@ function bindShare() {
 
             () => {
 
-                const text =
-                    encodeURIComponent(
-                        `${document.title} ${location.href}`
-                    );
-
                 window.open(
 
-                    `https://wa.me/?text=${text}`,
+                    `https://wa.me/?text=${encodeURIComponent(document.title + " " + location.href)}`,
 
                     "_blank"
 
@@ -827,7 +832,7 @@ function bindShare() {
 
 function updateClosing() {
 
-    const actions =
+    const panel =
         document.getElementById(
             "presentationActions"
         );
@@ -837,13 +842,13 @@ function updateClosing() {
         slides.length - 1
     ) {
 
-        actions.classList.remove(
+        panel.classList.remove(
             "hidden"
         );
 
     } else {
 
-        actions.classList.add(
+        panel.classList.add(
             "hidden"
         );
 
