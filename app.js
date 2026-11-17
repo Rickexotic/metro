@@ -161,7 +161,7 @@ async function startIntro() {
         "visible"
     );
 
-    await wait(2000);
+    await wait(3800);
 
     logo.classList.remove(
         "visible"
