@@ -18,19 +18,20 @@
     {
       "id": "01",
       "type": "statement",
-
       "eyebrow": "OUTSIDE COMPANY",
-
       "title": "La infraestructura ya existe.",
-
       "text": "La relación aún no."
     },
 
     {
       "id": "02",
-      "type": "reveal",
+      "type": "reveal-image",
 
       "eyebrow": "CONTEXTO",
+
+      "image": "assets/red.png",
+
+      "imageMode": "background",
 
       "premise": [
         "Pocas organizaciones",
@@ -44,7 +45,7 @@
 
     {
       "id": "03",
-      "type": "reveal",
+      "type": "reveal-sequence",
 
       "eyebrow": "CAMBIO",
 
@@ -54,12 +55,18 @@
         "solo por transporte."
       ],
 
-      "reveal": "Compite por relevancia. Compite por experiencia. Compite por pertenencia."
+      "sequence": [
+        "Compite por relevancia.",
+        "Compite por experiencia.",
+        "Compite por pertenencia."
+      ],
+
+      "highlight": "Compite por pertenencia."
     },
 
     {
       "id": "04",
-      "type": "reveal",
+      "type": "reveal-sequence",
 
       "eyebrow": "OPORTUNIDAD",
 
@@ -67,49 +74,36 @@
         "Millones de viajes."
       ],
 
-      "reveal": "Pocas relaciones. Ahí está la oportunidad."
+      "sequence": [
+        "Pocas relaciones.",
+        "Ahí está la oportunidad."
+      ],
+
+      "highlight": "Ahí está la oportunidad."
     },
 
     {
       "id": "05",
-      "type": "benchmark",
+      "type": "image-hero",
 
       "eyebrow": "BENCHMARK",
 
-      "title": "",
+      "title": "Los líderes construyen ecosistemas.",
 
-      "cards": [
+      "image": "assets/ecosistema.png",
 
-        {
-          "name": "LATAM Pass",
-          "message": "Frecuencia → Ecosistema"
-        },
-
-        {
-          "name": "Starbucks Rewards",
-          "message": "Transacciones → Hábitos"
-        },
-
-        {
-          "name": "Heathrow Rewards",
-          "message": "Viajes → Relación"
-        },
-
-        {
-          "name": "CMR",
-          "message": "Pago → Plataforma"
-        }
-
-      ],
-
-      "closing": "No construyeron programas. Construyeron ecosistemas."
+      "caption": "No construyeron programas. Construyeron ecosistemas."
     },
 
     {
       "id": "06",
-      "type": "reveal",
+      "type": "text-image",
 
       "eyebrow": "INSIGHT",
+
+      "image": "assets/metro.png",
+
+      "imagePosition": "right",
 
       "premise": [
         "La frecuencia",
@@ -121,9 +115,13 @@
 
     {
       "id": "07",
-      "type": "reveal",
+      "type": "text-image",
 
       "eyebrow": "VISIÓN",
+
+      "image": "assets/pagos.png",
+
+      "imagePosition": "right",
 
       "premise": [
         "Operador",
@@ -135,20 +133,13 @@
 
     {
       "id": "08",
-      "type": "ecosystem",
+      "type": "image-hero",
 
       "eyebrow": "ECOSISTEMA",
 
       "title": "Usuario Metro",
 
-      "nodes": [
-        "Comercio",
-        "Cultura",
-        "Movilidad",
-        "Servicios",
-        "Experiencias",
-        "Partners"
-      ],
+      "image": "assets/usuario.png",
 
       "caption": "Una relación. Múltiples puntos de valor."
     },
@@ -159,7 +150,13 @@
 
       "eyebrow": "FRAMEWORK OUTSIDE",
 
-      "items": [
+      "intro": [
+        "Una visión",
+        "sin ejecución",
+        "es solo una idea."
+      ],
+
+      "steps": [
         "Discover",
         "Design",
         "Launch",
@@ -173,9 +170,18 @@
 
       "eyebrow": "CLOSING",
 
-      "title": "Los viajes ya existen.",
+      "premise": [
+        "Los viajes",
+        "ya existen."
+      ],
 
-      "text": "La oportunidad es construir la relación. Let's build Club Metro."
+      "reveal": [
+        "La oportunidad",
+        "es construir",
+        "la relación."
+      ],
+
+      "final": "Let's build Club Metro."
     }
 
   ]
