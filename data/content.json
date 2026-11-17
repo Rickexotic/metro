@@ -17,72 +17,193 @@
 
     {
       "id": "01",
+      "type": "statement",
       "eyebrow": "OUTSIDE COMPANY",
       "title": "La infraestructura ya existe.",
-      "text": "La relación aún no. Una oportunidad para transformar millones de viajes en millones de relaciones."
+      "text": "La relación aún no."
     },
 
     {
       "id": "02",
+      "type": "reveal",
       "eyebrow": "CONTEXTO",
-      "title": "Metro mueve millones de viajes cada día.",
-      "text": "Metro representa una de las plataformas urbanas con mayor frecuencia de interacción en Chile. Cada viaje constituye una oportunidad de generar conocimiento, valor y relacionamiento."
+
+      "premise": [
+        "Pocas organizaciones",
+        "interactúan con millones",
+        "de personas",
+        "todos los días."
+      ],
+
+      "reveal": "Metro es una de ellas.",
+
+      "emphasis": "lime",
+
+      "timing": {
+        "premise": 1000,
+        "reveal": 2500
+      }
     },
 
     {
       "id": "03",
+      "type": "reveal",
       "eyebrow": "CAMBIO",
-      "title": "La movilidad ya no compite solo por transporte.",
-      "text": "Compite por relevancia. Compite por experiencia. Compite por pertenencia."
+
+      "premise": [
+        "La movilidad",
+        "ya no compite",
+        "solo por transporte."
+      ],
+
+      "revealSequence": [
+        "Compite por relevancia.",
+        "Compite por experiencia.",
+        "Compite por pertenencia."
+      ],
+
+      "highlight": "pertenencia"
     },
 
     {
       "id": "04",
-      "eyebrow": "PROBLEMA",
-      "title": "Millones de viajes. Pocas relaciones.",
-      "text": "Metro posee frecuencia, marca, cobertura y confianza. Sin embargo, gran parte de ese valor aún no se transforma en una relación continua con sus usuarios."
+      "type": "reveal",
+      "eyebrow": "OPORTUNIDAD",
+
+      "premise": [
+        "Millones de viajes."
+      ],
+
+      "revealSequence": [
+        "Pocas relaciones.",
+        "Ahí está la oportunidad."
+      ],
+
+      "emphasis": "lime"
     },
 
     {
       "id": "05",
+      "type": "benchmark",
+
       "eyebrow": "BENCHMARK",
+
       "title": "Los líderes construyen ecosistemas.",
-      "text": "Programas como Heathrow Rewards, Extime Rewards, LATAM Pass, Starbucks Rewards y CMR demuestran que la fidelización más efectiva se basa en datos, hábitos y experiencias."
+
+      "cards": [
+        {
+          "name": "LATAM Pass",
+          "message": "Frecuencia → Ecosistema"
+        },
+        {
+          "name": "Starbucks Rewards",
+          "message": "Transacciones → Hábitos"
+        },
+        {
+          "name": "Heathrow Rewards",
+          "message": "Viajes → Relación"
+        },
+        {
+          "name": "CMR",
+          "message": "Pago → Plataforma"
+        }
+      ],
+
+      "closing": "No construyeron programas. Construyeron ecosistemas."
     },
 
     {
       "id": "06",
+      "type": "reveal",
+
       "eyebrow": "INSIGHT",
-      "title": "La frecuencia tiene valor.",
-      "text": "Metro ya posee la frecuencia. La oportunidad es capturar ese valor mediante una propuesta relevante para usuarios, partners y la organización."
+
+      "premise": [
+        "La frecuencia",
+        "tiene valor."
+      ],
+
+      "reveal": "Metro ya la posee.",
+
+      "emphasis": "lime"
     },
 
     {
       "id": "07",
+      "type": "reveal",
+
       "eyebrow": "VISIÓN",
-      "title": "De operador de transporte a plataforma de relacionamiento urbano.",
-      "text": "La evolución natural consiste en conectar movilidad, beneficios, experiencias y servicios en una única experiencia para el usuario."
+
+      "premise": [
+        "Operador",
+        "de Transporte"
+      ],
+
+      "reveal": "Plataforma de Relacionamiento Urbano",
+
+      "emphasis": "lime"
     },
 
     {
       "id": "08",
+      "type": "ecosystem",
+
       "eyebrow": "ECOSISTEMA",
-      "title": "Usuario Metro al centro.",
-      "text": "Comercio. Cultura. Gastronomía. Movilidad. Servicios. Beneficios. Experiencias. Partners. Un ecosistema conectado a través de Club Metro."
+
+      "title": "Usuario Metro",
+
+      "nodes": [
+        "Comercio",
+        "Cultura",
+        "Movilidad",
+        "Servicios",
+        "Experiencias",
+        "Partners"
+      ]
     },
 
     {
       "id": "09",
+      "type": "reveal",
+
       "eyebrow": "FRAMEWORK OUTSIDE",
-      "title": "Discover. Design. Launch. Optimize.",
-      "text": "Un enfoque progresivo para comprender oportunidades, diseñar experiencias, validar hipótesis y escalar el modelo utilizando evidencia y datos."
+
+      "premise": [
+        "Una visión",
+        "sin ejecución",
+        "es solo una idea."
+      ],
+
+      "revealSequence": [
+        "Discover",
+        "Design",
+        "Launch",
+        "Optimize"
+      ],
+
+      "emphasis": "lavender"
     },
 
     {
       "id": "10",
+      "type": "reveal",
+
       "eyebrow": "CLOSING",
-      "title": "Los viajes ya existen.",
-      "text": "La oportunidad es construir la relación. Let's build Club Metro."
+
+      "premise": [
+        "Los viajes",
+        "ya existen."
+      ],
+
+      "revealSequence": [
+        "La oportunidad",
+        "es construir",
+        "la relación."
+      ],
+
+      "finalMessage": "Let's build Club Metro.",
+
+      "emphasis": "lime"
     }
 
   ]
