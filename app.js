@@ -167,7 +167,11 @@ async function startIntro() {
         "visible"
     );
 
-    await wait(600);
+    logo.classList.add(
+        "leaving"
+    );
+
+    await wait(700);
 
     document
         .getElementById(
