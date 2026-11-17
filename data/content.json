@@ -18,14 +18,18 @@
     {
       "id": "01",
       "type": "statement",
+
       "eyebrow": "OUTSIDE COMPANY",
+
       "title": "La infraestructura ya existe.",
+
       "text": "La relación aún no."
     },
 
     {
       "id": "02",
       "type": "reveal",
+
       "eyebrow": "CONTEXTO",
 
       "premise": [
@@ -35,19 +39,13 @@
         "todos los días."
       ],
 
-      "reveal": "Metro es una de ellas.",
-
-      "emphasis": "lime",
-
-      "timing": {
-        "premise": 1000,
-        "reveal": 2500
-      }
+      "reveal": "Metro es una de ellas."
     },
 
     {
       "id": "03",
       "type": "reveal",
+
       "eyebrow": "CAMBIO",
 
       "premise": [
@@ -56,30 +54,20 @@
         "solo por transporte."
       ],
 
-      "revealSequence": [
-        "Compite por relevancia.",
-        "Compite por experiencia.",
-        "Compite por pertenencia."
-      ],
-
-      "highlight": "pertenencia"
+      "reveal": "Compite por relevancia. Compite por experiencia. Compite por pertenencia."
     },
 
     {
       "id": "04",
       "type": "reveal",
+
       "eyebrow": "OPORTUNIDAD",
 
       "premise": [
         "Millones de viajes."
       ],
 
-      "revealSequence": [
-        "Pocas relaciones.",
-        "Ahí está la oportunidad."
-      ],
-
-      "emphasis": "lime"
+      "reveal": "Pocas relaciones. Ahí está la oportunidad."
     },
 
     {
@@ -88,25 +76,30 @@
 
       "eyebrow": "BENCHMARK",
 
-      "title": "Los líderes construyen ecosistemas.",
+      "title": "",
 
       "cards": [
+
         {
           "name": "LATAM Pass",
           "message": "Frecuencia → Ecosistema"
         },
+
         {
           "name": "Starbucks Rewards",
           "message": "Transacciones → Hábitos"
         },
+
         {
           "name": "Heathrow Rewards",
           "message": "Viajes → Relación"
         },
+
         {
           "name": "CMR",
           "message": "Pago → Plataforma"
         }
+
       ],
 
       "closing": "No construyeron programas. Construyeron ecosistemas."
@@ -123,9 +116,7 @@
         "tiene valor."
       ],
 
-      "reveal": "Metro ya la posee.",
-
-      "emphasis": "lime"
+      "reveal": "Metro ya la posee."
     },
 
     {
@@ -136,12 +127,10 @@
 
       "premise": [
         "Operador",
-        "de Transporte"
+        "de Transporte."
       ],
 
-      "reveal": "Plataforma de Relacionamiento Urbano",
-
-      "emphasis": "lime"
+      "reveal": "Plataforma de Relacionamiento Urbano."
     },
 
     {
@@ -159,51 +148,34 @@
         "Servicios",
         "Experiencias",
         "Partners"
-      ]
+      ],
+
+      "caption": "Una relación. Múltiples puntos de valor."
     },
 
     {
       "id": "09",
-      "type": "reveal",
+      "type": "framework",
 
       "eyebrow": "FRAMEWORK OUTSIDE",
 
-      "premise": [
-        "Una visión",
-        "sin ejecución",
-        "es solo una idea."
-      ],
-
-      "revealSequence": [
+      "items": [
         "Discover",
         "Design",
         "Launch",
         "Optimize"
-      ],
-
-      "emphasis": "lavender"
+      ]
     },
 
     {
       "id": "10",
-      "type": "reveal",
+      "type": "closing",
 
       "eyebrow": "CLOSING",
 
-      "premise": [
-        "Los viajes",
-        "ya existen."
-      ],
+      "title": "Los viajes ya existen.",
 
-      "revealSequence": [
-        "La oportunidad",
-        "es construir",
-        "la relación."
-      ],
-
-      "finalMessage": "Let's build Club Metro.",
-
-      "emphasis": "lime"
+      "text": "La oportunidad es construir la relación. Let's build Club Metro."
     }
 
   ]
