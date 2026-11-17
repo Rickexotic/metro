@@ -66,18 +66,28 @@ async function loadContent() {
 
 function bindIntro() {
 
-    const autoBtn =
-        document.getElementById(
-            "autoMode"
-        );
+const autoBtn =
+    document.getElementById(
+        "autoMode"
+    );
 
-    const manualBtn =
-        document.getElementById(
-            "manualMode"
-        );
+const manualBtn =
+    document.getElementById(
+        "manualMode"
+    );
 
-    autoBtn.addEventListener(
+if (!autoBtn || !manualBtn) {
 
+    console.error(
+        "No se encontraron autoMode o manualMode"
+    );
+
+    return;
+
+}
+
+autoBtn.addEventListener(
+   
         "click",
 
         async () => {
