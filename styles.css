@@ -716,4 +716,14 @@ p{
 
     }
 
+   body.dark .nav-pill img,
+body.dark .nav-arrow img,
+body.dark .action-btn img{
+
+    filter:
+        brightness(0)
+        invert(1);
+
+}
+
 }
