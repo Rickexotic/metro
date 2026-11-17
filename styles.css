@@ -760,6 +760,346 @@ p{
 }
 
 /* ==================================================
+   REVEAL SLIDES
+   ================================================== */
+
+.reveal-slide{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:40px;
+
+}
+
+.reveal-premise{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+    font-size:
+        clamp(
+            72px,
+            8vw,
+            140px
+        );
+
+    line-height:.92;
+
+    font-weight:700;
+
+    letter-spacing:-4px;
+
+    color:var(--text);
+
+}
+
+.reveal-answer{
+
+    margin-top:30px;
+
+    display:inline-flex;
+
+    align-self:flex-start;
+
+    padding:
+
+        18px
+        42px;
+
+    border-radius:999px;
+
+    background:var(--lime);
+
+    color:var(--navy);
+
+    font-size:
+        clamp(
+            32px,
+            3vw,
+            56px
+        );
+
+    font-weight:700;
+
+    line-height:1.1;
+
+    box-shadow:var(--shadow);
+
+}
+
+/* ==================================================
+   BENCHMARK
+   ================================================== */
+
+.benchmark-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            minmax(
+                220px,
+                1fr
+            )
+        );
+
+    gap:24px;
+
+    margin-top:50px;
+
+}
+
+.benchmark-card{
+
+    background:var(--card);
+
+    border-radius:var(--radius);
+
+    box-shadow:var(--shadow);
+
+    padding:36px;
+
+    min-height:220px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+}
+
+.benchmark-name{
+
+    font-size:28px;
+
+    font-weight:700;
+
+    line-height:1.1;
+
+    color:var(--text);
+
+}
+
+.benchmark-message{
+
+    font-size:18px;
+
+    line-height:1.5;
+
+    color:var(--text-soft);
+
+}
+
+.benchmark-closing{
+
+    margin-top:50px;
+
+    font-size:30px;
+
+    font-weight:700;
+
+    color:var(--text);
+
+}
+
+/* ==================================================
+   ECOSYSTEM
+   ================================================== */
+
+.ecosystem-wrapper{
+
+    width:900px;
+
+    max-width:100%;
+
+    margin:40px auto 0;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            1fr
+        );
+
+    gap:30px;
+
+    align-items:center;
+
+}
+
+.ecosystem-center{
+
+    grid-column:2;
+
+    background:var(--navy);
+
+    color:#fff;
+
+    min-height:220px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    font-size:28px;
+
+    font-weight:700;
+
+    box-shadow:var(--shadow);
+
+}
+
+.ecosystem-node{
+
+    background:var(--card);
+
+    border-radius:999px;
+
+    min-height:72px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    box-shadow:var(--shadow);
+
+    font-size:18px;
+
+    font-weight:600;
+
+    padding:
+        0
+        20px;
+
+}
+
+/* ==================================================
+   FRAMEWORK
+   ================================================== */
+
+.framework-list{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            1fr
+        );
+
+    gap:24px;
+
+    margin-top:60px;
+
+}
+
+.framework-step{
+
+    min-height:220px;
+
+    background:var(--card);
+
+    border-radius:var(--radius);
+
+    box-shadow:var(--shadow);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    font-size:34px;
+
+    font-weight:700;
+
+    color:var(--navy);
+
+}
+
+/* ==================================================
+   RESPONSIVE COMPONENTS
+   ================================================== */
+
+@media(max-width:1200px){
+
+    .benchmark-grid{
+
+        grid-template-columns:
+            repeat(
+                2,
+                1fr
+            );
+
+    }
+
+    .framework-list{
+
+        grid-template-columns:
+            repeat(
+                2,
+                1fr
+            );
+
+    }
+
+}
+
+@media(max-width:900px){
+
+    .reveal-premise{
+
+        font-size:54px;
+
+    }
+
+    .benchmark-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .framework-list{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .ecosystem-wrapper{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .ecosystem-center{
+
+        grid-column:auto;
+
+    }
+
+}
+
+/* ==================================================
    ACTIONS
    ================================================== */
 
