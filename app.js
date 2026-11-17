@@ -286,31 +286,315 @@ function renderSlides() {
             section.className =
                 "slide";
 
-            section.innerHTML = `
+            let html = "";
 
-                <div class="slide-content">
+            switch (slide.type) {
 
-                    <div class="eyebrow">
+                case "statement":
 
-                        ${slide.eyebrow || ""}
+                    html = `
 
-                    </div>
+                        <div class="slide-content">
 
-                    <h1>
+                            <div class="eyebrow">
 
-                        ${slide.title}
+                                ${slide.eyebrow || ""}
 
-                    </h1>
+                            </div>
 
-                    <p>
+                            <h1>
 
-                        ${slide.text || ""}
+                                ${slide.title || ""}
 
-                    </p>
+                            </h1>
 
-                </div>
+                            <p>
 
-            `;
+                                ${slide.text || ""}
+
+                            </p>
+
+                        </div>
+
+                    `;
+
+                    break;
+
+                case "reveal":
+
+                    html = `
+
+                        <div class="slide-content reveal-slide">
+
+                            <div class="eyebrow">
+
+                                ${slide.eyebrow || ""}
+
+                            </div>
+
+                            <div class="reveal-premise">
+
+                                ${Array.isArray(slide.premise)
+
+                                    ? slide.premise
+                                        .map(
+                                            item =>
+                                                `<div>${item}</div>`
+                                        )
+                                        .join("")
+
+                                    : ""
+                                }
+
+                            </div>
+
+                            ${slide.reveal ?
+
+                                `
+
+                                <div
+                                    class="reveal-answer"
+                                >
+
+                                    ${slide.reveal}
+
+                                </div>
+
+                                `
+
+                                : ""
+
+                            }
+
+                        </div>
+
+                    `;
+
+                    break;
+
+                case "benchmark":
+
+                    html = `
+
+                        <div class="slide-content">
+
+                            <div class="eyebrow">
+
+                                ${slide.eyebrow || ""}
+
+                            </div>
+
+                            <h1>
+
+                                ${slide.title || ""}
+
+                            </h1>
+
+                            <div class="benchmark-grid">
+
+                                ${
+
+                                    (slide.cards || [])
+
+                                    .map(
+
+                                        card =>
+
+                                        `
+
+                                        <div class="benchmark-card">
+
+                                            <div class="benchmark-name">
+
+                                                ${card.name}
+
+                                            </div>
+
+                                            <div class="benchmark-message">
+
+                                                ${card.message}
+
+                                            </div>
+
+                                        </div>
+
+                                        `
+
+                                    )
+
+                                    .join("")
+
+                                }
+
+                            </div>
+
+                            <div class="benchmark-closing">
+
+                                ${slide.closing || ""}
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                    break;
+
+                case "ecosystem":
+
+                    html = `
+
+                        <div class="slide-content">
+
+                            <div class="eyebrow">
+
+                                ${slide.eyebrow || ""}
+
+                            </div>
+
+                            <div class="ecosystem-wrapper">
+
+                                <div class="ecosystem-center">
+
+                                    ${slide.title}
+
+                                </div>
+
+                                ${(slide.nodes || [])
+
+                                    .map(
+
+                                        node =>
+
+                                        `
+
+                                        <div class="ecosystem-node">
+
+                                            ${node}
+
+                                        </div>
+
+                                        `
+
+                                    )
+
+                                    .join("")
+
+                                }
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                    break;
+
+                case "framework":
+
+                    html = `
+
+                        <div class="slide-content">
+
+                            <div class="eyebrow">
+
+                                ${slide.eyebrow || ""}
+
+                            </div>
+
+                            <div class="framework-list">
+
+                                ${(slide.items || [])
+
+                                    .map(
+
+                                        item =>
+
+                                        `
+
+                                        <div class="framework-step">
+
+                                            ${item}
+
+                                        </div>
+
+                                        `
+
+                                    )
+
+                                    .join("")
+
+                                }
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                    break;
+
+                case "closing":
+
+                    html = `
+
+                        <div class="slide-content">
+
+                            <div class="eyebrow">
+
+                                ${slide.eyebrow || ""}
+
+                            </div>
+
+                            <h1>
+
+                                ${slide.title || ""}
+
+                            </h1>
+
+                            <p>
+
+                                ${slide.text || ""}
+
+                            </p>
+
+                        </div>
+
+                    `;
+
+                    break;
+
+                default:
+
+                    html = `
+
+                        <div class="slide-content">
+
+                            <div class="eyebrow">
+
+                                ${slide.eyebrow || ""}
+
+                            </div>
+
+                            <h1>
+
+                                ${slide.title || ""}
+
+                            </h1>
+
+                            <p>
+
+                                ${slide.text || ""}
+
+                            </p>
+
+                        </div>
+
+                    `;
+
+            }
+
+            section.innerHTML = html;
 
             container.append(
                 section
