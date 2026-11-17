@@ -315,43 +315,41 @@ function renderSlides() {
 
             switch (slide.type) {
 
-                case "statement":
-
-                    html = `
-
-                        <div class="slide-content">
-
-                            <div class="eyebrow">
-
-                                ${slide.eyebrow || ""}
-
-                            </div>
-
-                            <h1>
-
-                                ${slide.title || ""}
-
-                            </h1>
-
-                            <p>
-
-                                ${slide.text || ""}
-
-                            </p>
-
-                        </div>
-
-                    `;
-
-                    break;
-
-               case "reveal":
+              case "statement":
 
     html = `
 
-        <div
-            class="slide-content reveal-slide"
-        >
+        <div class="slide-content statement-slide">
+
+            <div class="eyebrow">
+
+                ${slide.eyebrow || ""}
+
+            </div>
+
+            <div class="statement-primary">
+
+                ${slide.title || ""}
+
+            </div>
+
+            <div class="statement-secondary">
+
+                ${slide.text || ""}
+
+            </div>
+
+        </div>
+
+    `;
+
+    break;
+                  
+          case "reveal":
+
+    html = `
+
+        <div class="slide-content reveal-slide">
 
             <div class="eyebrow">
 
@@ -372,6 +370,7 @@ function renderSlides() {
                     ?
 
                     slide.premise
+
                     .map(
 
                         item =>
@@ -398,40 +397,25 @@ function renderSlides() {
 
             </div>
 
-            ${
+            <div
 
-                slide.reveal
+                class="reveal-answer reveal-typing"
 
-                ?
+                data-reveal
 
-                `
+            >
 
-                <div
+                ${slide.reveal || ""}
 
-                    class="reveal-answer"
-
-                    data-reveal
-
-                >
-
-                    ${slide.reveal}
-
-                </div>
-
-                `
-
-                :
-
-                ""
-
-            }
+            </div>
 
         </div>
 
     `;
 
     break;
-                case "benchmark":
+               
+               case "benchmark":
 
                     html = `
 
