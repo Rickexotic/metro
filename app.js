@@ -345,7 +345,7 @@ function renderSlides() {
 
     break;
                   
-          case "reveal":
+        case "reveal":
 
     html = `
 
@@ -357,9 +357,7 @@ function renderSlides() {
 
             </div>
 
-            <div
-                class="reveal-premise"
-            >
+            <div class="reveal-premise">
 
                 ${
 
@@ -397,24 +395,86 @@ function renderSlides() {
 
             </div>
 
-            <div
+            ${
 
-                class="reveal-answer reveal-typing"
+                slide.reveal
 
-                data-reveal
+                ?
 
-            >
+                `
 
-                ${slide.reveal || ""}
+                <div
+                    class="reveal-answer"
+                    data-reveal
+                >
 
-            </div>
+                    ${slide.reveal}
+
+                </div>
+
+                `
+
+                :
+
+                ""
+
+            }
+
+            ${
+
+                slide.revealSequence
+
+                ?
+
+                `
+
+                <div
+                    class="reveal-sequence"
+                    data-sequence
+                >
+
+                    ${
+
+                        slide.revealSequence
+
+                        .map(
+
+                            step =>
+
+                            `
+
+                            <div
+                                class="sequence-step"
+                            >
+
+                                ${step}
+
+                            </div>
+
+                            `
+
+                        )
+
+                        .join("")
+
+                    }
+
+                </div>
+
+                `
+
+                :
+
+                ""
+
+            }
 
         </div>
 
     `;
 
     break;
-               
+                  
                case "benchmark":
 
                     html = `
@@ -699,55 +759,103 @@ function runRevealEngine(
             ".reveal-answer"
         );
 
-    if (!answer) return;
+    const sequence =
+        slide.querySelectorAll(
+            ".sequence-step"
+        );
 
-    answer.classList.remove(
-        "visible"
-    );
+    if (answer) {
 
-    const finalText =
-        answer.textContent;
+        const originalText =
+            answer.dataset.original ||
+            answer.textContent;
 
-    answer.textContent = "";
+        answer.dataset.original =
+            originalText;
 
-    setTimeout(() => {
+        answer.textContent = "";
 
-        answer.classList.add(
+        answer.classList.remove(
             "visible"
         );
 
-        let i = 0;
+        setTimeout(() => {
 
-        const typing =
-            setInterval(() => {
-
-                answer.textContent +=
-                    finalText[i];
-
-                i++;
-
-                if (
-                    i >=
-                    finalText.length
-                ) {
-
-                    clearInterval(
-                        typing
-                    );
-
-                }
-
-            },
-
-            40
-
+            answer.classList.add(
+                "visible"
             );
 
-    },
+            let position = 0;
 
-    1800
+            const typing =
+                setInterval(() => {
 
-    );
+                    answer.textContent =
+                        originalText.slice(
+                            0,
+                            position + 1
+                        );
+
+                    position++;
+
+                    if (
+                        position >=
+                        originalText.length
+                    ) {
+
+                        clearInterval(
+                            typing
+                        );
+
+                    }
+
+                },
+
+                38
+
+                );
+
+        },
+
+        1400
+
+        );
+
+    }
+
+    if (
+        sequence.length
+    ) {
+
+        sequence.forEach(
+            item =>
+                item.classList.remove(
+                    "visible"
+                )
+        );
+
+        sequence.forEach(
+
+            (item, index) => {
+
+                setTimeout(() => {
+
+                    item.classList.add(
+                        "visible"
+                    );
+
+                },
+
+                1200 *
+                (index + 1)
+
+                );
+
+            }
+
+        );
+
+    }
 
 }
 
