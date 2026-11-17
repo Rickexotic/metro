@@ -353,15 +353,18 @@ body{
 .outside-logo{
 
     width:min(
-        520px,
-        42vw
+        380px,
+        30vw
     );
 
     height:auto;
 
     opacity:0;
 
-    transform:scale(.35);
+    transform:
+        scale(.08);
+
+    transform-origin:center center;
 
 }
 
@@ -373,11 +376,9 @@ body{
 
     transition:
 
-        opacity 1s ease,
+        opacity .8s ease,
 
-        transform 2.4s
-
-        cubic-bezier(
+        transform 3s cubic-bezier(
             .16,
             1,
             .3,
