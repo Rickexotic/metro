@@ -135,12 +135,37 @@ async function startIntro() {
         "active"
     );
 
+    const reduceMotion =
+        window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+    // Camera: lateral pan-in + slow push-in while typing
+    await wait(reduceMotion ? 0 : 900);
+
+    search.classList.add(
+        "typing"
+    );
+
     await playTyping();
 
-    await wait(500);
+    await wait(reduceMotion ? 500 : 650);
+
+    // Camera: zoom-in through the search bar
+    if (!reduceMotion) {
+
+        search.classList.add(
+            "zooming"
+        );
+
+        await wait(900);
+
+    }
 
     search.classList.remove(
-        "active"
+        "active",
+        "typing",
+        "zooming"
     );
 
     const logoStage =
