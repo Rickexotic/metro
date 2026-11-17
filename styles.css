@@ -726,7 +726,9 @@ body.dark .action-btn img{
 
     }
 
-   body.dark .nav-pill img,
+}
+
+body.dark .nav-pill img,
 body.dark .nav-arrow img,
 body.dark .action-btn img{
 
@@ -734,6 +736,4 @@ body.dark .action-btn img{
         brightness(0)
         invert(1);
 
-}
-   
 }
