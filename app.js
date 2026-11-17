@@ -694,44 +694,63 @@ function runRevealEngine(
     slide
 ) {
 
-    slide
-        .querySelectorAll(
-            "[data-reveal]"
-        )
-        .forEach(
-            item =>
-                item.classList.remove(
-                    "visible"
-                )
+    const answer =
+        slide.querySelector(
+            ".reveal-answer"
         );
 
-    const items =
-        slide.querySelectorAll(
-            "[data-reveal]"
+    if (!answer) return;
+
+    answer.classList.remove(
+        "visible"
+    );
+
+    const finalText =
+        answer.textContent;
+
+    answer.textContent = "";
+
+    setTimeout(() => {
+
+        answer.classList.add(
+            "visible"
         );
 
-    items.forEach(
+        let i = 0;
 
-        (item, index) => {
+        const typing =
+            setInterval(() => {
 
-            setTimeout(() => {
+                answer.textContent +=
+                    finalText[i];
 
-                item.classList.add(
-                    "visible"
-                );
+                i++;
+
+                if (
+                    i >=
+                    finalText.length
+                ) {
+
+                    clearInterval(
+                        typing
+                    );
+
+                }
 
             },
 
-            1200 *
-            (index + 1)
+            40
 
             );
 
-        }
+    },
+
+    1800
 
     );
 
 }
+
 function nextSlide() {
 
     if (
