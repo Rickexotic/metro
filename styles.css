@@ -1395,3 +1395,105 @@ body.dark .action-btn img{
         translateY(0);
 
 }
+
+/* ==================================================
+   STATEMENT
+   ================================================== */
+
+.statement-slide{
+
+    max-width:90%;
+
+}
+
+.statement-primary{
+
+    font-size:
+
+        clamp(
+            90px,
+            9vw,
+            160px
+        );
+
+    line-height:.92;
+
+    font-weight:700;
+
+    color:#201C2D;
+
+}
+
+.statement-secondary{
+
+    margin-top:28px;
+
+    font-size:
+
+        clamp(
+            90px,
+            9vw,
+            160px
+        );
+
+    line-height:.92;
+
+    font-weight:700;
+
+    color:#BFB2EA;
+
+}
+
+/* ==================================================
+   REVEAL
+   ================================================== */
+
+.reveal-slide{
+
+    max-width:90%;
+
+}
+
+.reveal-premise{
+
+    font-size:
+
+        clamp(
+            72px,
+            7vw,
+            120px
+        );
+
+    line-height:.92;
+
+    font-weight:700;
+
+    color:#201C2D;
+
+}
+
+.reveal-answer{
+
+    margin-top:70px;
+
+    font-size:
+
+        clamp(
+            80px,
+            8vw,
+            140px
+        );
+
+    line-height:.92;
+
+    font-weight:700;
+
+    color:#201C2D;
+
+}
+
+.reveal-answer.visible{
+
+    color:#E4F497;
+
+}
