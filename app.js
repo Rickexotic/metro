@@ -37,8 +37,6 @@ async function initializeApp() {
 
     bindTheme();
 
-    bindAudio();
-
     bindShare();
 
     bindActions();
@@ -189,7 +187,9 @@ async function startIntro() {
 
     activateSlide(0);
 
-    buildPagination();
+   buildPagination();
+
+   updatePagination();
 
    if (
     autoplayEnabled
@@ -632,51 +632,6 @@ function updateModeIcon() {
 
 }
 
-/* ==================================================
-   AUDIO
-   ================================================== */
-
-function bindAudio() {
-
-    document
-        .getElementById(
-            "audioToggle"
-        )
-        .addEventListener(
-
-            "click",
-
-            toggleAudio
-
-        );
-
-}
-
-function toggleAudio() {
-
-    const music =
-        document.getElementById(
-            "ambientAudio"
-        );
-
-    ambientEnabled =
-        !ambientEnabled;
-
-    if (
-        ambientEnabled
-    ) {
-
-        music.volume = 0.2;
-
-        music.play();
-
-    } else {
-
-        music.pause();
-
-    }
-
-}
 
 /* ==================================================
    THEME
