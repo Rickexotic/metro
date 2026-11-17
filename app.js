@@ -345,7 +345,9 @@ function renderSlides() {
 
     break;
                   
-        case "reveal":
+       case "reveal":
+
+case "reveal-sequence":
 
     html = `
 
@@ -359,38 +361,14 @@ function renderSlides() {
 
             <div class="reveal-premise">
 
-                ${
-
-                    Array.isArray(
-                        slide.premise
-                    )
-
-                    ?
-
-                    slide.premise
+                ${(slide.premise || [])
 
                     .map(
-
                         item =>
-
-                        `
-
-                        <div>
-
-                            ${item}
-
-                        </div>
-
-                        `
-
+                        `<div>${item}</div>`
                     )
 
                     .join("")
-
-                    :
-
-                    ""
-
                 }
 
             </div>
@@ -422,32 +400,32 @@ function renderSlides() {
 
             ${
 
+                slide.sequence ||
                 slide.revealSequence
 
                 ?
 
                 `
 
-                <div
-                    class="reveal-sequence"
-                    data-sequence
-                >
+                <div class="reveal-sequence">
 
                     ${
 
-                        slide.revealSequence
+                        (slide.sequence ||
+                        slide.revealSequence)
 
                         .map(
 
-                            step =>
+                            item =>
 
                             `
 
                             <div
                                 class="sequence-step"
+                                data-reveal
                             >
 
-                                ${step}
+                                ${item}
 
                             </div>
 
@@ -477,72 +455,155 @@ function renderSlides() {
                   
                case "benchmark":
 
-                    html = `
+    html = `
 
-                        <div class="slide-content">
+        <div class="slide-content image-hero-slide">
 
-                            <div class="eyebrow">
+            <div class="eyebrow">
 
-                                ${slide.eyebrow || ""}
+                ${slide.eyebrow || ""}
 
-                            </div>
+            </div>
 
-                            <h1>
+            ${slide.title ?
 
-                                ${slide.title || ""}
+                `
 
-                            </h1>
+                <h2 class="image-title">
 
-                            <div class="benchmark-grid">
+                    ${slide.title}
 
-                                ${
+                </h2>
 
-                                    (slide.cards || [])
+                `
 
-                                    .map(
+                :
 
-                                        card =>
+                ""
 
-                                        `
+            }
 
-                                        <div class="benchmark-card">
+            <img
+                class="hero-image"
+                src="${slide.image}"
+                alt=""
+            >
 
-                                            <div class="benchmark-name">
+            <div class="image-caption">
 
-                                                ${card.name}
+                ${slide.caption || slide.closing || ""}
 
-                                            </div>
+            </div>
 
-                                            <div class="benchmark-message">
+        </div>
 
-                                                ${card.message}
+    `;
 
-                                            </div>
+    break;
 
-                                        </div>
 
-                                        `
+case "image-hero":
 
-                                    )
+    html = `
 
-                                    .join("")
+        <div class="slide-content image-hero-slide">
 
-                                }
+            <div class="eyebrow">
 
-                            </div>
+                ${slide.eyebrow || ""}
 
-                            <div class="benchmark-closing">
+            </div>
 
-                                ${slide.closing || ""}
+            ${slide.title ?
 
-                            </div>
+                `
 
-                        </div>
+                <h2 class="image-title">
 
-                    `;
+                    ${slide.title}
 
-                    break;
+                </h2>
 
+                `
+
+                :
+
+                ""
+
+            }
+
+            <img
+                class="hero-image"
+                src="${slide.image}"
+                alt=""
+            >
+
+            <div class="image-caption">
+
+                ${slide.caption || ""}
+
+            </div>
+
+        </div>
+
+    `;
+
+    break;
+
+
+case "text-image":
+
+    html = `
+
+        <div class="slide-content text-image-layout">
+
+            <div class="text-image-copy">
+
+                <div class="eyebrow">
+
+                    ${slide.eyebrow || ""}
+
+                </div>
+
+                <div class="reveal-premise">
+
+                    ${(slide.premise || [])
+
+                        .map(item =>
+                            `<div>${item}</div>`
+                        )
+
+                        .join("")
+                    }
+
+                </div>
+
+                <div
+                    class="reveal-answer"
+                    data-reveal
+                >
+
+                    ${slide.reveal || ""}
+
+                </div>
+
+            </div>
+
+            <div class="text-image-visual">
+
+                <img
+                    src="${slide.image}"
+                    alt=""
+                >
+
+            </div>
+
+        </div>
+
+    `;
+
+    break;
+                  
                 case "ecosystem":
 
                     html = `
