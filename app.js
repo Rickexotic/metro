@@ -320,58 +320,92 @@ function renderSlides() {
 
                     break;
 
-                case "reveal":
+               case "reveal":
 
-                    html = `
+    html = `
 
-                        <div class="slide-content reveal-slide">
+        <div
+            class="slide-content reveal-slide"
+        >
 
-                            <div class="eyebrow">
+            <div class="eyebrow">
 
-                                ${slide.eyebrow || ""}
+                ${slide.eyebrow || ""}
 
-                            </div>
+            </div>
 
-                            <div class="reveal-premise">
+            <div
+                class="reveal-premise"
+            >
 
-                                ${Array.isArray(slide.premise)
+                ${
 
-                                    ? slide.premise
-                                        .map(
-                                            item =>
-                                                `<div>${item}</div>`
-                                        )
-                                        .join("")
+                    Array.isArray(
+                        slide.premise
+                    )
 
-                                    : ""
-                                }
+                    ?
 
-                            </div>
+                    slide.premise
+                    .map(
 
-                            ${slide.reveal ?
+                        item =>
 
-                                `
+                        `
 
-                                <div
-                                    class="reveal-answer"
-                                >
+                        <div>
 
-                                    ${slide.reveal}
-
-                                </div>
-
-                                `
-
-                                : ""
-
-                            }
+                            ${item}
 
                         </div>
 
-                    `;
+                        `
 
-                    break;
+                    )
 
+                    .join("")
+
+                    :
+
+                    ""
+
+                }
+
+            </div>
+
+            ${
+
+                slide.reveal
+
+                ?
+
+                `
+
+                <div
+
+                    class="reveal-answer"
+
+                    data-reveal
+
+                >
+
+                    ${slide.reveal}
+
+                </div>
+
+                `
+
+                :
+
+                ""
+
+            }
+
+        </div>
+
+    `;
+
+    break;
                 case "benchmark":
 
                     html = `
@@ -625,17 +659,70 @@ function activateSlide(index) {
 
     currentSlide = index;
 
-    slides[index]
-        .classList.add(
-            "active"
-        );
+    const current =
+        slides[index];
+
+    current.classList.add(
+        "active"
+    );
 
     updatePagination();
+
     updateProgress();
+
     updateClosing();
 
-}
+    runRevealEngine(
+        current
+    );
 
+}
+/* ==================================================
+   REVEAL ENGINE
+   ================================================== */
+
+function runRevealEngine(
+    slide
+) {
+
+    slide
+        .querySelectorAll(
+            "[data-reveal]"
+        )
+        .forEach(
+            item =>
+                item.classList.remove(
+                    "visible"
+                )
+        );
+
+    const items =
+        slide.querySelectorAll(
+            "[data-reveal]"
+        );
+
+    items.forEach(
+
+        (item, index) => {
+
+            setTimeout(() => {
+
+                item.classList.add(
+                    "visible"
+                );
+
+            },
+
+            1200 *
+            (index + 1)
+
+            );
+
+        }
+
+    );
+
+}
 function nextSlide() {
 
     if (
